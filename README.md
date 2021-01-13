@@ -1,2 +1,3 @@
-# void-rice
-Void Linux customization and configs, along with some bootstrap scripts.
+# Void Linux bootstrap repo
+
+A small repository containing my suckless configs, configuration scripts, and some basic dotfiles.
