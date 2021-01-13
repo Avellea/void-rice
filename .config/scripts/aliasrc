@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Use neoveim for vim when possible
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+alias \
+	nclear="clear; neofetch" \
+	weather="curl wttr.in" \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto"
