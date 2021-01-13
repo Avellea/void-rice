@@ -73,6 +73,8 @@ installSoftware () {
 	read -n 1
 	sudo xbps-install neofetch kitty libXinerama-devel libXft-devel freetype-devel xinit feh neovim xrandr xtools iwd curl wget htop dbus
 	echo ""
+	rm ~/.bashrc
+	cp .bashrc ~/.bashrc
 	echo "This next task is invasive and should be done manually. Follow the instructions below."
 	echo "1) Open a new terminal."
 	echo "2) git clone git://github.com/void-linux/void-packages.git"
@@ -110,10 +112,11 @@ setUpDesktop () {
 	cd suckless-config/dwm/ && sudo make clean install
 	cd ../dmenu && sudo make clean install
 	cd ../slstatus && sudo make clean install
-	cd .. && cp -rf .dwm/ ~/.dwm/
+	cd .. && cp -rf .dwm/ ~/.dwm
 	echo exec dwm >> ~/.xinitrc
 	cd ..
-	cp -rf .config/ ~/.config/
+	pwd
+	cp -rf .config/* ~/.config
 	echo ""
 	echo "Done! Check for any errors above and re-run if required."
 	echo "Be sure to also make sure void-rice/suckless-config/.dwm/ and void-rice/.config/ were copied."
