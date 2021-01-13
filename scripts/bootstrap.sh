@@ -76,6 +76,7 @@ installSoftware () {
 	echo ""
 	rm ~/.bashrc
 	cp .bashrc ~/.bashrc
+	sudo cp scripts/brave /usr/bin/brave
 	echo "This next task is invasive and should be done manually. Follow the instructions below."
 	echo "1) Open a new terminal."
 	echo "2) git clone git://github.com/void-linux/void-packages.git"
