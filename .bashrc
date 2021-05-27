@@ -1,14 +1,33 @@
 # .bashrc
 
+_man() {
+	man -O width=$COLUMNS $*;
+}
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export PATH=$PATH:/home/jared/.local/bin
+export PATH=$PATH:/home/jared/.local/bin/Discord
+export PATH=$PATH:/home/jared/.dotnet
+export BROWSER=brave-browser-stable
+
+export DOTNET_ROOT=/home/jared/.dotnet
+
+alias sudo="sudo "
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+alias fixtime='/etc/cron.daily/sntp-update'
+alias shutdown='sudo shutdown now'
+alias pclear='clear; pfetch'
 
-[ -f "$HOME/.config/scripts/aliasrc" ] && source "$HOME/.config/scripts/aliasrc"
+alias man="_man"
 
-export PS1="\[\033[38;5;26m\][\[$(tput sgr0)\]\[\033[38;5;32m\]\u\[$(tput sgr0)\]\[\033[38;5;26m\]@\[$(tput sgr0)\]\[\033[38;5;32m\]\h\[$(tput sgr0)\]\[\033[38;5;38m\] \W\[$(tput sgr0)\]\[\033[38;5;26m\]]\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]"
+#PS1='[\u@\h \W]\$ '
+export PS1="[\u@\h \W]\\$\[$(tput sgr0)\] "
 
+export EDITOR=nvim;
 
-neofetch
+# User modifications here
+
+clear
+pfetch
