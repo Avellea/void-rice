@@ -1,0 +1,19 @@
+#!/bin/bash
+while read file
+do
+	fullpath="$(pwd)/$file"
+	case "$1" in
+	"w")
+		cp "$file" ~/.config/wall.png &&
+		feh --bg-scale "$HOME/.config/wall.png" &&
+		notify-send -i "$HOME/.config/wall.png" "Wallpaper changed." ;;
+	"y")
+		echo -n "$file" | xclip -selection clipboard &&
+		notify-send "$file copied to clipboard" & ;;
+	"Y")
+		echo -n "$fullpath" | xclip -selection clipboard &&
+		notify-send "$fullpath" | xclip -selection clipboard & ;;
+	"d")
+		[ "$(printf "No\\nYes" | dmenu -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted" & ;;
+	esac
+done

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ "${#1}" -gt 30  ]];
+then
+	visual="${1:0:20}"..."${1: -7}"
+else
+	visual="$1"
+fi
+
+echo $visual
+
+x=$(echo -e "mpv\nmpv (loop)\nwget\nsxiv\nmupdf\naplay\nclipboard\nbrowser" | dmenu -i -p "How should I open '$visual'?")
+case "$x" in
+	mpv) mpv -quiet "$1" 2&>/dev/null & disown ;;
+	"mpv (loop)") mpv -quiet --loop "$1" 2&>/dev/null & disown ;;
+	wget) wget -O ~/Downloads/ "$1" 2&>/dev/null & disown ;;
+	sxiv) wget -O ~/.tmp/image "$1" && sxiv "~/.tmp/image" 2&>/dev/null & disown ;;
+	mupdf) wget -O ~/.tmp/pdf "$1" && mupdf "~/.tmp/pdf" 2&>/dev/null & disown ;;
+	aplay) wget -O ~/.tmp/audio "$1" && aplay "~/.tmp/audio" 2&>/dev/null & disown;;
+	clipboard) echo $1 | xclip -selection clipboard ;;
+	browser) xdg-open "$1" 2&>/dev/null & disown ;;
+esac
